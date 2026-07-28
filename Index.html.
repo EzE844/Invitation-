@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invitation pour Christiane 💌</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Georgia', serif;
+}
+
+body{
+    min-height:100vh;
+    overflow:hidden;
+    background:linear-gradient(135deg,#ffe6ec,#fff5f7);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.petal{
+    position:absolute;
+    top:-20px;
+    font-size:25px;
+    animation:fall linear infinite;
+    opacity:.8;
+}
+
+@keyframes fall{
+    0%{
+        transform:translateY(-10vh) rotate(0deg);
+    }
+    100%{
+        transform:translateY(110vh) rotate(360deg);
+    }
+}
+
+.container{
+    width:90%;
+    max-width:400px;
+    text-align:center;
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,.15);
+    position:relative;
+    z-index:2;
+}
+
+.envelope{
+    width:180px;
+    height:120px;
+    background:#d6336c;
+    margin:20px auto;
+    position:relative;
+    cursor:pointer;
+    border-radius:10px;
+    transition:.8s;
+}
+
+.envelope:before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    border-left:90px solid transparent;
+    border-right:90px solid transparent;
+    border-top:60px solid #f783ac;
+}
+
+.envelope.open{
+    transform:rotateX(180deg);
+}
+
+h1{
+    color:#d6336c;
+    margin-bottom:20px;
+}
+
+.text{
+    font-size:17px;
+    line-height:1.6;
+    color:#444;
+    min-height:120px;
+}
+
+button{
+    border:none;
+    padding:12px 25px;
+    margin:15px;
+    border-radius:30px;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.yes{
+    background:#d6336c;
+    color:white;
+}
+
+.no{
+    background:#ddd;
+    position:relative;
+}
+
+.hidden{
+    display:none;
+}
+
+.page{
+    display:none;
+}
+
+.page.active{
+    display:block;
+}
+
+.time-btn{
+    background:#f8d7e3;
+    color:#8b1e45;
+    display:block;
+    width:80%;
+    margin:10px auto;
+}
+
+.final{
+    color:#d6336c;
+    font-size:18px;
+    line-height:1.7;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="petal" style="left:10%;animation-duration:8s;">🌹</div>
+<div class="petal" style="left:30%;animation-duration:10s;">🌸</div>
+<div class="petal" style="left:50%;animation-duration:7s;">🌹</div>
+<div class="petal" style="left:70%;animation-duration:9s;">🌸</div>
+<div class="petal" style="left:90%;animation-duration:11s;">🌹</div>
+
+
+<div class="container">
+
+<!-- PAGE 1 -->
+
+<div class="page active" id="page1">
+
+<div class="envelope" onclick="openEnvelope()"></div>
+
+<h1>💌 Invitation spéciale</h1>
+
+<div class="text" id="message">
+Clique sur l'enveloppe pour découvrir ton invitation...
+</div>
+
+<div id="buttons" class="hidden">
+
+<button class="yes" onclick="accept()">Oui ❤️</button>
+
+<button class="no" id="noBtn" onclick="moveNo()">Non</button>
+
+</div>
+
+</div><!-- PAGE 2 : CHOIX DE L'HEURE -->
+
+<div class="page" id="page2">
+
+<h1>🌸 Choisis ton heure</h1>
+
+<div class="text">
+Je serai heureux de passer ce moment avec toi ❤️<br>
+À quelle heure souhaites-tu qu'on se retrouve ?
+</div>
+
+<button class="time-btn" onclick="chooseTime('16h00')">🕓 16h00</button>
+<button class="time-btn" onclick="chooseTime('17h00')">🕔 17h00</button>
+<button class="time-btn" onclick="chooseTime('18h00')">🕕 18h00</button>
+<button class="time-btn" onclick="chooseTime('19h00')">🕖 19h00</button>
+<button class="time-btn" onclick="chooseTime('20h00')">🕗 20h00</button>
+<button class="time-btn" onclick="chooseTime('21h00')">🕘 21h00</button>
+<button class="time-btn" onclick="chooseTime('22h00')">🕙 22h00</button>
+
+</div>
+
+
+<!-- PAGE 3 : MESSAGE FINAL -->
+
+<div class="page" id="page3">
+
+<h1>❤️ Merci Christiane</h1>
+
+<div class="final" id="finalText"></div>
+
+</div>
+
+
+</div>
+
+
+<script>
+
+function openEnvelope(){
+
+    document.querySelector(".envelope").classList.add("open");
+
+    let text = 
+    "DOKAHA ADJA MARIE CHRISTIANE ❤️<br><br>" +
+    "Tu as beaucoup travaillé pour tes examens et les résultats approchent. " +
+    "En attendant, j'aimerais t'offrir un petit moment de détente avec moi.<br><br>" +
+    "Acceptes-tu mon invitation pour un petit date ? 🌹";
+
+    let i = 0;
+    let box = document.getElementById("message");
+
+    box.innerHTML = "";
+
+    let timer = setInterval(function(){
+
+        box.innerHTML = text.substring(0,i);
+
+        i++;
+
+        if(i > text.length){
+
+            clearInterval(timer);
+
+            document.getElementById("buttons")
+            .classList.remove("hidden");
+
+        }
+
+    },40);
+
+}
+
+
+function moveNo(){
+
+    let btn = document.getElementById("noBtn");
+
+    let x = Math.random()*200-100;
+    let y = Math.random()*100-50;
+
+    btn.style.transform =
+    "translate("+x+"px,"+y+"px)";
+
+}
+
+
+function accept(){
+
+    document.getElementById("page1")
+    .classList.remove("active");
+
+    document.getElementById("page2")
+    .classList.add("active");
+
+}
+
+
+function chooseTime(time){
+
+    document.getElementById("page2")
+    .classList.remove("active");
+
+    document.getElementById("page3")
+    .classList.add("active");
+
+
+    let final = 
+    "Merci d'avoir accepté mon invitation, DOKAHA ADJA MARIE CHRISTIANE ❤️<br><br>" +
+
+    "Je suis content de pouvoir partager ce moment avec toi.<br><br>" +
+
+    "J'espère que cette sortie pourra te permettre de souffler un peu avant les résultats. " +
+    "Peu importe le résultat, je souhaite simplement te voir sourire et passer un bon moment.<br><br>" +
+
+    "Notre rendez-vous est donc prévu à : <b>"+time+"</b> 🌹<br><br>" +
+
+    "À très bientôt ❤️";
+
+
+    let i=0;
+
+    let box=document.getElementById("finalText");
+
+    box.innerHTML="";
+
+
+    let timer=setInterval(function(){
+
+        box.innerHTML=final.substring(0,i);
+
+        i++;
+
+        if(i>final.length){
+
+            clearInterval(timer);
+
+        }
+
+    },35);
+
+}
+
+</script>
