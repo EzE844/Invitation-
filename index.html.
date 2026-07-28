@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Une invitation spéciale ❤️</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="petals"></div>
+
+<!-- PAGE 1 -->
+<section id="page1" class="page active">
+
+    <div class="envelope" onclick="openLetter()">
+        💌
+    </div>
+
+    <div id="letter" class="hidden">
+
+        <h1>DOKAHA ADJA MARIE CHRISTIANE ❤️</h1>
+
+        <p id="typing"></p>
+
+        <div class="buttons">
+
+            <button id="yes" onclick="nextPage()">
+                ❤️ Oui, j'accepte
+            </button>
+
+            <button id="no">
+                ❌ Non
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- PAGE 2 -->
+<section id="page2" class="page">
+
+    <h1>Choisis l'heure qui te convient 🕒</h1>
+
+    <select id="hour">
+
+        <option>16h00</option>
+        <option>17h00</option>
+        <option>18h00</option>
+        <option>19h00</option>
+        <option>20h00</option>
+        <option>21h00</option>
+        <option>22h00</option>
+
+    </select>
+
+    <br><br>
+
+    <button onclick="finish()">
+        Valider ❤️
+    </button>
+
+</section>
+
+<!-- PAGE 3 -->
+<section id="page3" class="page">
+
+    <h1>Merci ❤️</h1>
+
+    <h2>Tu viens de faire un homme très heureux 😊</h2>
+
+    <p>
+        Merci d'avoir accepté cette invitation.
+        <br><br>
+
+        J'espère que cette petite sortie t'aidera
+        à oublier un peu le stress des résultats.
+        Peu importe ce qu'ils seront,
+        je suis sûr que tu as donné le meilleur de toi-même.
+
+        <br><br>
+
+        J'ai vraiment hâte de passer ce moment avec toi. 🌹❤️
+    </p>
+
+</section>
+
+<script src="script.js"></script>
+
+</body>
+</html>
